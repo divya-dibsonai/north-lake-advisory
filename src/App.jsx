@@ -580,7 +580,9 @@ function Onboarding({ setPage }) {
   ];
 
   return (
-    <div style={{ minHeight: "100vh", padding: isMobile ? "6rem 5% 3rem" : "8rem 5% 5rem" }}>
+   <div style={{ minHeight: "100vh", padding: isMobile ? "6rem 5% 3rem" : "8rem 5% 5rem", position: "relative" }}>
+      <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.45)", zIndex: 0, pointerEvents: "none" }} />
+      <div style={{ position: "relative", zIndex: 1 }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <Eyebrow>Becoming a Client</Eyebrow>
         <SectionTitle>A Simple, Transparent <Pink>Process</Pink></SectionTitle>
@@ -591,14 +593,31 @@ function Onboarding({ setPage }) {
 
       <Rule style={{ marginTop: "3rem" }} />
 
-      <div style={{ maxWidth: 860, margin: "3rem auto 0" }}>
+      <div style={{ maxWidth: 860, margin: "3rem auto 0", position: "relative" }}>
+        {!isMobile && (
+          <div style={{
+            position: "absolute", left: 27, top: 28, bottom: 80,
+            width: 2,
+            background: `linear-gradient(to bottom, ${C.cyan}, ${C.pink})`,
+            zIndex: 0,
+          }} />
+        )}
         {steps.map((s, i) => (
-          <div key={i}
-            style={{ borderTop: `1px solid ${C.border}`, padding: "2rem 0", transition: "all 0.2s", cursor: "default" }}
-            onMouseEnter={e => { e.currentTarget.style.paddingLeft = "1.2rem"; e.currentTarget.style.background = "rgba(0,212,232,0.05)"; }}
-            onMouseLeave={e => { e.currentTarget.style.paddingLeft = "0"; e.currentTarget.style.background = "transparent"; }}
-          >
+          <div key={i} style={{ display: "flex", gap: "1.5rem", marginBottom: "1rem", position: "relative", zIndex: 1 }}>
+            <div style={{
+              width: 56, height: 56, borderRadius: "50%", flexShrink: 0,
+              background: C.bg, border: `2px solid ${C.cyan}`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontFamily: "'Bebas Neue'", fontSize: "1.2rem", color: C.cyan, zIndex: 2,
+            }}>
+              {String(i + 1).padStart(2, "0")}
+            </div>
+            <div style={{ flex: 1, borderLeft: `1px solid ${C.border}`, padding: "0.2rem 1.4rem", transition: "border-color 0.25s" }}
+              onMouseEnter={e => e.currentTarget.style.borderColor = C.cyan}
+              onMouseLeave={e => e.currentTarget.style.borderColor = C.border}
+            >
             <div style={{ fontSize: "0.72rem", letterSpacing: "0.18em", textTransform: "uppercase", color: C.cyan, marginBottom: "0.6rem" }}>{s.title}</div>
+
             <p style={{ fontSize: "0.88rem", color: C.muted, lineHeight: 1.8 }}>{s.body}</p>
             {s.list.length > 0 && (
               <ul style={{ listStyle: "none", marginTop: "0.6rem" }}>
@@ -609,13 +628,14 @@ function Onboarding({ setPage }) {
                 ))}
               </ul>
             )}
+         </div>
           </div>
         ))}
-        <div style={{ borderTop: `1px solid ${C.border}` }} />
         <div style={{ textAlign: "center", marginTop: "3rem" }}>
           <BtnPrimary onClick={() => setPage("contact")}>Book Your Free Consultation →</BtnPrimary>
         </div>
       </div>
+	</div>
     </div>
   );
 }
