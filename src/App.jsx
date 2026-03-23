@@ -165,8 +165,9 @@ function Nav({ page, setPage }) {
         background: "rgba(13,17,23,0.92)", backdropFilter: "blur(16px)",
         borderBottom: `1px solid ${C.border}`,
       }}>
-        {/* Logo */}
-        <div onClick={() => navigate("home")} style={{ cursor: "pointer" }}>
+   {/* Logo */}
+        <div onClick={() => navigate("home")} style={{ cursor: "pointer", display: "flex", alignItems: "center", gap: "0.75rem" }}>
+         <img src="/logo.png" alt="North Lake Advisory Logo" style={{ height: 36, width: "auto", display: "block", mixBlendMode: "screen" }} />
           <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.4rem", letterSpacing: "0.1em", color: C.white }}>
             NORTH LAKE <span style={{ color: C.cyan }}>ADVISORY</span>
           </div>
@@ -771,8 +772,11 @@ function Footer({ setPage }) {
       background: "rgba(13,17,23,0.9)", backdropFilter: "blur(12px)",
       position: "relative", zIndex: 10,
     }}>
-      <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1rem", letterSpacing: "0.1em", color: C.white }}>
-        NORTH LAKE <span style={{ color: C.cyan }}>ADVISORY</span>
+  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+        <img src="/logo.png" alt="North Lake Advisory Logo" style={{ height: 30, width: "auto", display: "block", mixBlendMode: "luminosity" }} />
+        <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1rem", letterSpacing: "0.1em", color: C.white }}>
+          NORTH LAKE <span style={{ color: C.cyan }}>ADVISORY</span>
+        </div>
       </div>
       <ul style={{ display: "flex", gap: isMobile ? "1.2rem" : "2rem", listStyle: "none", flexWrap: "wrap" }}>
         {[["home","Home"],["about","About"],["services","Services"],["onboarding","Joining Us"],["contact","Contact"]].map(([id, label]) => (
