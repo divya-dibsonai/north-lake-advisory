@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 
+
 const C = {
   bg:      "#0d1117", bg2: "#131920", cyan: "#00d4e8",
   cyanDim: "rgba(0,212,232,0.12)", cyanBdr: "rgba(0,212,232,0.28)",
-  ///pink:    "#5b9bd5", pinkDim: "rgba(91,155,213,0.18)",
-  white:   "#ffffff", muted: "rgba(255,255,255,0.65)",
-  faint:   "rgba(255,255,255,0.25)", card: "rgba(13,17,23,0.75)",
+  pink:    "#e94d89", pinkDim: "rgba(233, 77, 137, 0.18)",
+  white:   "#ffffff", muted: "rgba(255,255,255,0.90)",
+  faint:   "rgba(255,255,255,0.8)", card: "rgba(13,17,23,0.75)",
   border:  "rgba(255,255,255,0.08)",
-pink: "#e94d89", // This matches the "Advisory" highlight exactly
-  pinkDim: "rgba(233, 77, 137, 0.18)",
 };
 
 const BG_IMAGES = {
@@ -69,7 +68,8 @@ function Overlay() {
   return (
     <div style={{
       position: "fixed", inset: 0, zIndex: 1,
-      background: "linear-gradient(135deg,rgba(50,50,55,0.55) 0%,rgba(60,60,65,0.45) 100%)",
+      // Lowering opacity from 0.55/0.45 to 0.15/0.05
+      background: "linear-gradient(135deg, rgba(30,30,35,0.15) 0%, rgba(40,40,45,0.05) 100%)",
       pointerEvents: "none",
     }} />
   );
@@ -315,10 +315,10 @@ function Home({ setPage }) {
       <section style={{ padding: isMobile ? "3rem 5%" : "5rem 5%", maxWidth: 900, margin: "0 auto", width: "100%", textAlign: isMobile ? "center" : "left" }}>
         <Eyebrow style={isMobile ? { justifyContent: "center" } : {}}>Our Purpose</Eyebrow>
         <SectionTitle>Navigating Financial Complexity<br /><Pink>With Confidence</Pink></SectionTitle>
-        <p style={{ color: C.muted, fontSize: "0.95rem", lineHeight: 1.85, marginBottom: "1rem" }}>
+        <p style={{ color: C.white, fontSize: "0.95rem", lineHeight: 1.85, marginBottom: "1rem" }}>
           At North Lake Advisory Ltd, our purpose is to help individuals and businesses navigate financial complexity with confidence. We exist to provide trusted financial guidance, proactive tax planning, and practical business advice that enables our clients to make informed decisions, remain compliant, and build sustainable long-term success.
         </p>
-        <p style={{ color: C.faint, fontSize: "0.88rem", lineHeight: 1.8, marginBottom: "2.5rem" }}>
+        <p style={{ color: C.white, fontSize: "0.88rem", lineHeight: 1.8, marginBottom: "2.5rem" }}>
           Whether you are starting a new business, growing an existing company, or looking to switch accountants — North Lake Advisory is here to help.
         </p>
         <div style={{ display: "flex", gap: "1rem", justifyContent: isMobile ? "center" : "flex-start", flexWrap: "wrap" }}>
