@@ -23,7 +23,7 @@ const GLOBAL_CSS = `
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { font-size: 16px; scroll-behavior: smooth; }
-  body { background: ${C.bg}; color: ${C.white}; font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+  body { background: ${C.bg}; background-attachment: fixed; color: ${C.white}; font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
   ::selection { background: ${C.cyan}; color: ${C.bg}; }
   button { cursor: pointer; font-family: 'DM Sans', sans-serif; }
   input, textarea, select { font-family: 'DM Sans', sans-serif; }
@@ -58,6 +58,7 @@ function PageBg({ page }) {
     <div style={{
       position: "fixed", inset: 0, zIndex: 0,
       backgroundImage: `url(${BG_IMAGES[page]})`,
+	backgroundAttachment: "fixed",  
       backgroundSize: "cover", backgroundPosition: "center",
       opacity: 0.8, transition: "opacity 0.6s", pointerEvents: "none",
     }} />
@@ -69,8 +70,8 @@ function Overlay() {
     <div style={{
       position: "fixed", inset: 0, zIndex: 1,
       // Lowering opacity from 0.55/0.45 to 0.15/0.05
-      background: "linear-gradient(135deg, rgba(30,30,35,0.15) 0%, rgba(40,40,45,0.05) 100%)",
-      pointerEvents: "none",
+     background: "linear-gradient(135deg, rgba(30,30,35,0.15) 0%, rgba(40,40,45,0.05) 100%)",
+ 	pointerEvents: "none",
     }} />
   );
 }
@@ -78,8 +79,8 @@ function Overlay() {
 function Eyebrow({ children, style }) {
   return (
     <div style={{
-      display: "inline-flex", alignItems: "center", gap: "0.75rem",
-      fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase",
+      display: "inline-flex", alignItems: "center", gap: "0.75rem",fontWeight: 600,
+      fontFamily: "'Archivo Black', sans-serif",fontSize: "0.68rem", letterSpacing: "0.22em", textTransform: "uppercase",
       color: C.cyan, marginBottom: "1rem", ...style,
     }}>
       <span style={{ width: 32, height: 1, background: C.cyan, display: "block", flexShrink: 0 }} />
@@ -94,6 +95,7 @@ function SectionTitle({ children, style }) {
       fontFamily: "'Bebas Neue', sans-serif",
       fontSize: "clamp(2.2rem, 4vw, 3.4rem)",
       fontWeight: 400, letterSpacing: "0.04em", lineHeight: 1.1,
+	color: C.white,
       marginBottom: "1rem", ...style,
     }}>{children}</h2>
   );
@@ -102,7 +104,7 @@ function SectionTitle({ children, style }) {
 function Pink({ children }) {
   return (
     <span style={{
-      color: C.pink, textShadow: `0 0 20px ${C.pinkDim}`,
+      color: C.white, textShadow: `0 0 20px ${C.pinkDim}`,
       borderBottom: `3px solid ${C.pink}`, paddingBottom: "2px",
     }}>{children}</span>
   );
@@ -172,7 +174,7 @@ function Nav({ page, setPage }) {
         <div onClick={() => navigate("home")} style={{ cursor: "pointer", display: "flex", alignItems: "center", gap: "0.75rem" }}>
          <img src="/logo.png" alt="North Lake Advisory Logo" style={{ height: 36, width: "auto", display: "block", mixBlendMode: "screen" }} />
           <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1.4rem", letterSpacing: "0.1em", color: C.white }}>
-            NORTH LAKE <span style={{ color: C.cyan }}>ADVISORY</span>
+            NORTH LAKE ADVISORY
           </div>
         </div>
 
@@ -242,8 +244,8 @@ function Home({ setPage }) {
 
           <h1 className="fade-up" style={{
             fontFamily: "'Archivo Black', sans-serif",
-            fontSize: "clamp(2.5rem, 8vw, 6.5rem)",
-            fontWeight: 900,
+            fontSize: "clamp(2.5rem, 8vw, 4.5rem)",
+            fontWeight: 800,
             textTransform: "uppercase",
             letterSpacing: "-0.02em",
             lineHeight: 1.1,
@@ -263,7 +265,7 @@ function Home({ setPage }) {
                 left: 0,
                 bottom: '10%',
                 width: '100%',
-                height: '45%',
+                height: '35%',
                 backgroundColor: C.pink,
                 zIndex: -1,
                 transform: 'rotate(-2deg)'
@@ -312,16 +314,26 @@ function Home({ setPage }) {
       </div>
 
       {/* Purpose */}
-      <section style={{ padding: isMobile ? "3rem 5%" : "5rem 5%", maxWidth: 900, margin: "0 auto", width: "100%", textAlign: isMobile ? "center" : "left" }}>
-        <Eyebrow style={isMobile ? { justifyContent: "center" } : {}}>Our Purpose</Eyebrow>
+      <section style={{ padding: isMobile ? "3rem 5%" : "5rem 5%", maxWidth: 900, margin: "0 auto", width: "100%", textAlign: isMobile ? "center" : "center" }}>
+        <Eyebrow style={isMobile ? { justifyContent: "center",width: "100%", textAlign: "center"} : {}}>Our Purpose</Eyebrow>
+
+
         <SectionTitle>Navigating Financial Complexity<br /><Pink>With Confidence</Pink></SectionTitle>
-        <p style={{ color: C.white, fontSize: "0.95rem", lineHeight: 1.85, marginBottom: "1rem" }}>
+        <p style={{ color: C.white, fontSize: "1.0rem", lineHeight: 1.85, marginBottom: "1rem" }}>
           At North Lake Advisory Ltd, our purpose is to help individuals and businesses navigate financial complexity with confidence. We exist to provide trusted financial guidance, proactive tax planning, and practical business advice that enables our clients to make informed decisions, remain compliant, and build sustainable long-term success.
         </p>
         <p style={{ color: C.white, fontSize: "0.88rem", lineHeight: 1.8, marginBottom: "2.5rem" }}>
           Whether you are starting a new business, growing an existing company, or looking to switch accountants — North Lake Advisory is here to help.
         </p>
-        <div style={{ display: "flex", gap: "1rem", justifyContent: isMobile ? "center" : "flex-start", flexWrap: "wrap" }}>
+        <div style={{ 
+  display: "flex", 
+  gap: "1rem", 
+  width: "100%", // Ensures the flexbox spans the full section width
+  justifyContent: "center", // Fixed to center for all screen sizes
+  alignItems: "center",
+  flexWrap: "wrap",
+  marginTop: "2rem" 
+}}>
           <BtnPrimary onClick={() => setPage("about")}>Learn About Us</BtnPrimary>
           <BtnPink onClick={() => setPage("onboarding")}>Join Us Today</BtnPink>
         </div>
@@ -804,16 +816,30 @@ function Footer({ setPage }) {
   <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
         <img src="/logo.png" alt="North Lake Advisory Logo" style={{ height: 30, width: "auto", display: "block", mixBlendMode: "luminosity" }} />
         <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "1rem", letterSpacing: "0.1em", color: C.white }}>
-          NORTH LAKE <span style={{ color: C.cyan }}>ADVISORY</span>
+          NORTH LAKE ADVISORY
         </div>
       </div>
       <ul style={{ display: "flex", gap: isMobile ? "1.2rem" : "2rem", listStyle: "none", flexWrap: "wrap" }}>
         {[["home","Home"],["about","About"],["services","Services"],["onboarding","Joining Us"],["contact","Contact"]].map(([id, label]) => (
           <li key={id}>
-            <a href="#" onClick={() => setPage(id)} style={{ fontSize: "0.68rem", letterSpacing: "0.12em", textTransform: "uppercase", color: C.muted, transition: "color 0.2s" }}
-              onMouseEnter={e => e.target.style.color = C.cyan}
-              onMouseLeave={e => e.target.style.color = C.muted}
-            >{label}</a>
+           <a 
+  href="#" 
+  onClick={() => setPage(id)} 
+  style={{ 
+    // Add the fontFamily here:
+    fontFamily: "'Archivo Black', sans-serif", 
+    fontSize: "0.65rem", // Slightly increased as Archivo Black can be thick
+    fontWeight: "200",    // Archivo Black is naturally heavy
+    letterSpacing: "0.15em", 
+    textTransform: "uppercase", 
+    color: C.muted, 
+    transition: "color 0.2s" 
+  }}
+  onMouseEnter={e => e.target.style.color = C.cyan}
+  onMouseLeave={e => e.target.style.color = C.white}
+>
+  {label}
+</a>
           </li>
         ))}
       </ul>
