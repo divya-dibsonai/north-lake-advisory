@@ -116,9 +116,12 @@ function BtnPrimary({ children, onClick, style }) {
     <button onClick={onClick}
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
-        background: hov ? C.cyan : "transparent", color: hov ? C.bg : C.cyan,
+background: hov ? "rgba(0,212,232,0.85)" : C.cyan,  // ← solid cyan always
+        color: C.bg,  
+borderRadius: "4px",   // ← add this
+        
         border: `2px solid ${C.cyan}`, padding: "0.72rem 2rem",
-        fontSize: "0.76rem", fontWeight: 500, letterSpacing: "0.14em",
+        fontSize: "0.76rem", fontWeight: 600, letterSpacing: "0.14em",
         textTransform: "uppercase", transition: "all 0.22s", ...style,
       }}>{children}</button>
   );
@@ -130,8 +133,9 @@ function BtnPink({ children, onClick, style }) {
     <button onClick={onClick}
       onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
       style={{
-        background: hov ? C.pink : "transparent", color: hov ? C.white : C.pink,
+        background: C.pink , color: C.white ,
         border: `2px solid ${C.pink}`, padding: "0.72rem 2rem",
+borderRadius: "4px",   // ← add this
         fontSize: "0.76rem", fontWeight: 500, letterSpacing: "0.14em",
         textTransform: "uppercase", transition: "all 0.22s", ...style,
       }}>{children}</button>
@@ -711,7 +715,18 @@ function Contact() {
     setLoading(false);
   };
 
-  const inputStyle = { width: "100%", background: "rgba(255,255,255,0.05)", border: `1px solid ${C.border}`, color: C.white, padding: "0.75rem 1rem", fontSize: "0.88rem", outline: "none", marginTop: "0.4rem" };
+
+const inputStyle = {
+  width: "100%",
+  background: "rgba(255,255,255,0.6)",   // ← white-ish fields
+  border: "none",
+  color: C.bg,                            // ← dark text inside input
+  padding: "0.75rem 1rem",
+  fontSize: "0.88rem",
+  outline: "none",
+  marginTop: "0.4rem",
+};
+
 
   return (
     <div style={{ minHeight: "100vh", padding: isMobile ? "6rem 5% 3rem" : "8rem 5% 5rem" }}>
@@ -747,55 +762,56 @@ function Contact() {
         </div>
 
         {/* Form */}
-        <div>
-          <Eyebrow>Send a Message</Eyebrow>
-          {sent ? (
-            <div style={{ padding: "2rem", border: `1px solid ${C.cyanBdr}`, background: C.cyanDim, textAlign: "center" }}>
-              <div style={{ fontFamily: "'Bebas Neue'", fontSize: "1.6rem", color: C.cyan, marginBottom: "0.5rem" }}>Message Sent!</div>
-              <p style={{ color: C.muted, fontSize: "0.88rem" }}>Thank you for getting in touch. A member of our team will respond shortly.</p>
-            </div>
-          ) : (
-            <div>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
-                <div style={{ marginBottom: "1rem" }}>
-                  <label style={{ fontSize: "0.66rem", letterSpacing: "0.18em", textTransform: "uppercase", color: C.muted }}>First Name</label>
-                  <input value={form.firstName} onChange={handle("firstName")} placeholder="Jane" style={inputStyle} onFocus={e => e.target.style.borderColor = C.cyan} onBlur={e => e.target.style.borderColor = C.border} />
-                </div>
-                <div style={{ marginBottom: "1rem" }}>
-                  <label style={{ fontSize: "0.66rem", letterSpacing: "0.18em", textTransform: "uppercase", color: C.muted }}>Last Name</label>
-                  <input value={form.lastName} onChange={handle("lastName")} placeholder="Smith" style={inputStyle} onFocus={e => e.target.style.borderColor = C.cyan} onBlur={e => e.target.style.borderColor = C.border} />
-                </div>
-              </div>
-              <div style={{ marginBottom: "1rem" }}>
-                <label style={{ fontSize: "0.66rem", letterSpacing: "0.18em", textTransform: "uppercase", color: C.muted }}>Email Address</label>
-                <input value={form.email} onChange={handle("email")} type="email" placeholder="jane@example.com" style={inputStyle} onFocus={e => e.target.style.borderColor = C.cyan} onBlur={e => e.target.style.borderColor = C.border} />
-              </div>
-              <div style={{ marginBottom: "1rem" }}>
-                <label style={{ fontSize: "0.66rem", letterSpacing: "0.18em", textTransform: "uppercase", color: C.muted }}>Phone Number</label>
-                <input value={form.phone} onChange={handle("phone")} type="tel" placeholder="+44 ..." style={inputStyle} onFocus={e => e.target.style.borderColor = C.cyan} onBlur={e => e.target.style.borderColor = C.border} />
-              </div>
-              <div style={{ marginBottom: "1rem" }}>
-                <label style={{ fontSize: "0.66rem", letterSpacing: "0.18em", textTransform: "uppercase", color: C.muted }}>I Am A...</label>
-                <select value={form.type} onChange={handle("type")} style={{ ...inputStyle, background: "#0d1117" }} onFocus={e => e.target.style.borderColor = C.cyan} onBlur={e => e.target.style.borderColor = C.border}>
-                  <option value="">Please select</option>
-                  <option>Individual / Self-employed</option>
-                  <option>Contractor or Consultant</option>
-                  <option>Small or Medium Business</option>
-                  <option>Property Investor / Developer</option>
-                  <option>Start-up / Entrepreneur</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div style={{ marginBottom: "1rem" }}>
-                <label style={{ fontSize: "0.66rem", letterSpacing: "0.18em", textTransform: "uppercase", color: C.muted }}>How Can We Help?</label>
-                <textarea value={form.message} onChange={handle("message")} rows={4} placeholder="Tell us about your accounting, tax, or advisory needs..." style={{ ...inputStyle, resize: "vertical" }} onFocus={e => e.target.style.borderColor = C.cyan} onBlur={e => e.target.style.borderColor = C.border} />
-              </div>
-              <BtnPrimary onClick={handleSubmit} style={{ width: "100%", opacity: loading ? 0.6 : 1 }}>
-                {loading ? "Sending..." : "Send Message"}
-              </BtnPrimary>
-            </div>
-          )}
+<div style={{ background: C.cyan, padding: "2.5rem" }}>
+  <Eyebrow style={{ color: C.bg }}>Send a Message</Eyebrow>
+  {sent ? (
+    <div style={{ padding: "2rem", textAlign: "center" }}>
+      <div style={{ fontFamily: "'Montserrat'", fontSize: "1.6rem", color: C.bg, marginBottom: "0.5rem" }}>Message Sent!</div>
+      <p style={{ color: C.bg, fontSize: "0.88rem" }}>Thank you for getting in touch. A member of our team will respond shortly.</p>
+    </div>
+  ) : (
+    <div>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+        <div style={{ marginBottom: "1rem" }}>
+          <label style={{ fontSize: "0.66rem", letterSpacing: "0.18em", textTransform: "uppercase", color: C.bg, fontWeight: 600 }}>First Name</label>
+          <input value={form.firstName} onChange={handle("firstName")} placeholder="Jane" style={{ width: "100%", background: "rgba(255,255,255,0.6)", border: "none", color: C.bg, padding: "0.75rem 1rem", fontSize: "0.88rem", outline: "none", marginTop: "0.4rem" }} />
         </div>
+        <div style={{ marginBottom: "1rem" }}>
+          <label style={{ fontSize: "0.66rem", letterSpacing: "0.18em", textTransform: "uppercase", color: C.bg, fontWeight: 600 }}>Last Name</label>
+          <input value={form.lastName} onChange={handle("lastName")} placeholder="Smith" style={{ width: "100%", background: "rgba(255,255,255,0.6)", border: "none", color: C.bg, padding: "0.75rem 1rem", fontSize: "0.88rem", outline: "none", marginTop: "0.4rem" }} />
+        </div>
+      </div>
+      <div style={{ marginBottom: "1rem" }}>
+        <label style={{ fontSize: "0.66rem", letterSpacing: "0.18em", textTransform: "uppercase", color: C.bg, fontWeight: 600 }}>Email Address</label>
+        <input value={form.email} onChange={handle("email")} type="email" placeholder="jane@example.com" style={{ width: "100%", background: "rgba(255,255,255,0.6)", border: "none", color: C.bg, padding: "0.75rem 1rem", fontSize: "0.88rem", outline: "none", marginTop: "0.4rem" }} />
+      </div>
+      <div style={{ marginBottom: "1rem" }}>
+        <label style={{ fontSize: "0.66rem", letterSpacing: "0.18em", textTransform: "uppercase", color: C.bg, fontWeight: 600 }}>Phone Number</label>
+        <input value={form.phone} onChange={handle("phone")} type="tel" placeholder="+44 ..." style={{ width: "100%", background: "rgba(255,255,255,0.6)", border: "none", color: C.bg, padding: "0.75rem 1rem", fontSize: "0.88rem", outline: "none", marginTop: "0.4rem" }} />
+      </div>
+      <div style={{ marginBottom: "1rem" }}>
+        <label style={{ fontSize: "0.66rem", letterSpacing: "0.18em", textTransform: "uppercase", color: C.bg, fontWeight: 600 }}>I Am A...</label>
+        <select value={form.type} onChange={handle("type")} style={{ width: "100%", background: "rgba(255,255,255,0.6)", border: "none", color: C.bg, padding: "0.75rem 1rem", fontSize: "0.88rem", outline: "none", marginTop: "0.4rem" }}>
+          <option value="">Please select</option>
+          <option>Individual / Self-employed</option>
+          <option>Contractor or Consultant</option>
+          <option>Small or Medium Business</option>
+          <option>Property Investor / Developer</option>
+          <option>Start-up / Entrepreneur</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div style={{ marginBottom: "1rem" }}>
+        <label style={{ fontSize: "0.66rem", letterSpacing: "0.18em", textTransform: "uppercase", color: C.bg, fontWeight: 600 }}>How Can We Help?</label>
+        <textarea value={form.message} onChange={handle("message")} rows={4} placeholder="Tell us about your accounting, tax, or advisory needs..." style={{ width: "100%", background: "rgba(255,255,255,0.6)", border: "none", color: C.bg, padding: "0.75rem 1rem", fontSize: "0.88rem", outline: "none", marginTop: "0.4rem", resize: "vertical" }} />
+      </div>
+      <BtnPrimary onClick={handleSubmit} style={{ width: "100%", opacity: loading ? 0.6 : 1, background: C.bg, color: C.white, borderColor: C.bg }}>
+        {loading ? "Sending..." : "Send Message"}
+      </BtnPrimary>
+    </div>
+  )}
+</div>
+
       </div>
     </div>
   );
