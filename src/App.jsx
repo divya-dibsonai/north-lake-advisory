@@ -3,10 +3,12 @@ import { useState, useEffect } from "react";
 const C = {
   bg:      "#0d1117", bg2: "#131920", cyan: "#00d4e8",
   cyanDim: "rgba(0,212,232,0.12)", cyanBdr: "rgba(0,212,232,0.28)",
-  pink:    "#5b9bd5", pinkDim: "rgba(91,155,213,0.18)",
+  ///pink:    "#5b9bd5", pinkDim: "rgba(91,155,213,0.18)",
   white:   "#ffffff", muted: "rgba(255,255,255,0.65)",
   faint:   "rgba(255,255,255,0.25)", card: "rgba(13,17,23,0.75)",
   border:  "rgba(255,255,255,0.08)",
+pink: "#e94d89", // This matches the "Advisory" highlight exactly
+  pinkDim: "rgba(233, 77, 137, 0.18)",
 };
 
 const BG_IMAGES = {
@@ -18,7 +20,8 @@ const BG_IMAGES = {
 };
 
 const GLOBAL_CSS = `
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
+
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { font-size: 16px; scroll-behavior: smooth; }
   body { background: ${C.bg}; color: ${C.white}; font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
@@ -235,14 +238,39 @@ function Home({ setPage }) {
         textAlign: "center", padding: isMobile ? "7rem 5% 3rem" : "8rem 5% 4rem",
       }}>
         <div style={{ maxWidth: 720 }}>
-          <Eyebrow style={{ justifyContent: "center" }}>Professional Accounting &amp; Advisory — London</Eyebrow>
+          <Eyebrow style={{ justifyContent: "center" }}>Professional Accounting & Advisory</Eyebrow>
+
           <h1 className="fade-up" style={{
-            fontFamily: "'Bebas Neue', sans-serif",
-            fontSize: "clamp(3rem, 9vw, 7.5rem)",
-            fontWeight: 400, letterSpacing: "0.05em", lineHeight: 1.0, marginBottom: "1.5rem",
+            fontFamily: "'Archivo Black', sans-serif",
+            fontSize: "clamp(2.5rem, 8vw, 6.5rem)",
+            fontWeight: 900,
+            textTransform: "uppercase",
+            letterSpacing: "-0.02em",
+            lineHeight: 1.1,
+            marginBottom: "1.5rem",
+            color: C.white
           }}>
-            WELCOME TO NORTH LAKE<br /><Pink>ADVISORY</Pink>
+            WELCOME TO <br /> NORTH LAKE <br />
+            <span style={{
+              position: 'relative',
+              display: 'inline-block',
+              zIndex: 1,
+              padding: '0 10px'
+            }}>
+              ADVISORY
+              <span style={{
+                position: 'absolute',
+                left: 0,
+                bottom: '10%',
+                width: '100%',
+                height: '45%',
+                backgroundColor: C.pink,
+                zIndex: -1,
+                transform: 'rotate(-2deg)'
+              }} />
+            </span>
           </h1>
+
           <p className="fade-up-2" style={{ color: C.muted, fontSize: "0.95rem", lineHeight: 1.85, maxWidth: 580, margin: "0 auto 1rem" }}>
             North Lake Advisory Ltd provides professional accounting, tax, and business advisory services to individuals, entrepreneurs, contractors, and growing businesses.
           </p>
@@ -255,6 +283,7 @@ function Home({ setPage }) {
           </div>
         </div>
       </section>
+   
 
       {/* Principles band */}
       <div style={{
@@ -307,7 +336,7 @@ function Home({ setPage }) {
         }}>
           <div>
             <Eyebrow>Our Vision</Eyebrow>
-            <SectionTitle style={{ fontSize: "clamp(1.8rem, 3vw, 2.6rem)" }}>A Firm Built For <Pink>The Long Term</Pink></SectionTitle>
+            <SectionTitle style={{ fontSize: "clamp(1.8rem, 3vw, 2.6rem)" }}>A Firm Built For The Long Term</SectionTitle>
             <p style={{ color: C.muted, fontSize: "0.92rem", lineHeight: 1.85, marginBottom: "1rem" }}>
               Our vision is to become a trusted advisory firm recognised for delivering high-quality accounting, tax, and business advisory services to entrepreneurs, professionals, and growing businesses.
             </p>
@@ -317,7 +346,7 @@ function Home({ setPage }) {
           </div>
           <div>
             <Eyebrow>Our Mission</Eyebrow>
-            <SectionTitle style={{ fontSize: "clamp(1.8rem, 3vw, 2.6rem)" }}>Beyond Compliance, <Pink>Real Value</Pink></SectionTitle>
+            <SectionTitle style={{ fontSize: "clamp(1.8rem, 3vw, 2.6rem)" }}><white>Beyond Compliance, Real Value</white></SectionTitle>
             <p style={{ color: C.muted, fontSize: "0.92rem", lineHeight: 1.85, marginBottom: "1.2rem" }}>
               Our mission is to provide reliable, professional, and forward-thinking financial services that go beyond compliance. We strive to:
             </p>
