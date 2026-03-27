@@ -19,11 +19,11 @@ const BG_IMAGES = {
 };
 
 const GLOBAL_CSS = `
-  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=DM+Sans:wght@300;400;500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Montserrat:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { font-size: 16px; scroll-behavior: smooth; }
-  body { background: ${C.bg}; background-attachment: fixed; color: ${C.white}; font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+  body { background: ${C.bg}; background-attachment: fixed; color: ${C.muted}; font-family: 'Montserrat', sans-serif; font-weight: 200; overflow-x: hidden; }
   ::selection { background: ${C.cyan}; color: ${C.bg}; }
   button { cursor: pointer; font-family: 'DM Sans', sans-serif; }
   input, textarea, select { font-family: 'DM Sans', sans-serif; }
