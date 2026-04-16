@@ -905,13 +905,9 @@ function Footer({ setPage }) {
           title="Call Us"
           style={{
             display: "flex", alignItems: "center", justifyContent: "center",
-            gap: "0.4rem",
-            height: 38, borderRadius: "4px",
-            padding: "0 1rem",
+            width: 38, height: 38, borderRadius: "50%",
             border: `1px solid ${C.pink}`, background: C.pinkDim,
             color: C.pink, transition: "all 0.22s", textDecoration: "none",
-            fontSize: "0.65rem", fontWeight: 700, letterSpacing: "0.12em",
-            textTransform: "uppercase",
           }}
           onMouseEnter={e => { e.currentTarget.style.background = C.pink; e.currentTarget.style.color = C.white; }}
           onMouseLeave={e => { e.currentTarget.style.background = C.pinkDim; e.currentTarget.style.color = C.pink; }}
