@@ -267,7 +267,7 @@ function Home({ setPage }) {
           </h1>
 
           <p className="fade-up-2" style={{ color: C.muted, fontSize: "0.95rem", lineHeight: 1.85, maxWidth: 580, margin: "0 auto 1rem" }}>
-            North Lake Advisory Ltd provides professional accounting, tax, and business advisory services to individuals, entrepreneurs, contractors, and growing businesses.
+            North Lake Advisory Ltd provides Professional Accounting, Tax, and Business Advisory services to individuals, entrepreneurs, contractors, and growing businesses.
           </p>
           <p className="fade-up-2" style={{ color: C.faint, fontSize: "0.88rem", lineHeight: 1.8, maxWidth: 560, margin: "0 auto 2.5rem" }}>
             We support our clients with practical financial guidance, proactive tax planning, and reliable compliance services, allowing them to focus on running and growing their businesses with confidence.
@@ -861,7 +861,7 @@ function Footer({ setPage }) {
       <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
         {/* LinkedIn */}
         <a
-          href="https://www.linkedin.com/company/north-lake-advisory"
+          href="https://www.linkedin.com/company/north-lake-advisory-ltd/"
           target="_blank"
           rel="noopener noreferrer"
           title="LinkedIn"
